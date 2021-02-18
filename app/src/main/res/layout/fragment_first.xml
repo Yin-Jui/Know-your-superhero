@@ -8,21 +8,76 @@
 
     <TextView
         android:id="@+id/textview_first"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/hello_first_fragment"
-        app:layout_constraintBottom_toTopOf="@id/button_first"
+        android:layout_width="348dp"
+        android:layout_height="74dp"
+        android:background="#00F3D6F8"
+        android:gravity="center_horizontal"
+        android:text="@string/logo_label"
+        android:textAlignment="center"
+        android:textColor="#90B54C"
+        android:textSize="30sp"
+        android:textStyle="bold"
+        android:typeface="serif"
+        app:layout_constraintBottom_toTopOf="@id/herodatabse_button"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.492"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.237" />
 
     <Button
-        android:id="@+id/button_first"
+        android:id="@+id/herodatabse_button"
+        android:layout_width="182dp"
+        android:layout_height="74dp"
+        android:layout_marginTop="72dp"
+        android:background="#73a851"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:text="@string/database"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/quiz_button" />
+
+    <Button
+        android:id="@+id/gps_button"
+        android:layout_width="182dp"
+        android:layout_height="74dp"
+        android:layout_marginTop="72dp"
+        android:background="#73a851"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:text="@string/gps"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/herodatabse_button" />
+
+    <Button
+        android:id="@+id/quiz_button"
+        android:layout_width="182dp"
+        android:layout_height="74dp"
+        android:layout_marginTop="50dp"
+        android:background="#73a851"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:text="@string/quiz"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textview_first" />
+
+    <ImageButton
+        android:id="@+id/profileButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/next"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginRight="10dp"
+        android:src="@android:drawable/ic_menu_manage"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/textview_first" />
+        app:layout_constraintTop_toTopOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>
