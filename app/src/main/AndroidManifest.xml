@@ -19,6 +19,8 @@
             android:name=".HeroBaseActivity"
             android:label="@string/title_activity_hero_base"
             android:theme="@style/AppTheme.NoActionBar"></activity>
+
+        <!-- need to add launchere attribute to login activity -->
         <activity
             android:name=".ui.login.LoginActivity"
             android:label="@string/title_activity_login" />
