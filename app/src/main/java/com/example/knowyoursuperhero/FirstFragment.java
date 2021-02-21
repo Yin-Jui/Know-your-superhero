@@ -1,18 +1,28 @@
 package com.example.knowyoursuperhero;
 
+import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.fragment.NavHostFragment;
+
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 public class FirstFragment extends Fragment {
 
     @Override
     public View onCreateView(
+
             LayoutInflater inflater, ViewGroup container,
             Bundle savedInstanceState
     ) {
@@ -22,7 +32,6 @@ public class FirstFragment extends Fragment {
 
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-
         view.findViewById(R.id.profileButton).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

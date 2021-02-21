@@ -1,9 +1,12 @@
 package com.example.knowyoursuperhero;
 
+import android.content.Intent;
 import android.os.Bundle;
 
+import com.firebase.ui.auth.AuthUI;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
+import com.google.firebase.auth.FirebaseAuth;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -13,7 +16,11 @@ import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import java.util.Arrays;
+
 public class MainActivity extends AppCompatActivity {
+
+    private static final int SIGNIN = 100;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,6 +56,25 @@ public class MainActivity extends AppCompatActivity {
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
+            return true;
+        }
+
+        if (id == R.id.action_signin) {
+            //startActivityForResult(new Intent(this, LoginActivity.class), SIGNIN);
+            Intent intent = AuthUI.getInstance()
+                    .createSignInIntentBuilder()
+                    .setAvailableProviders(Arrays.asList(
+                            new AuthUI.IdpConfig.EmailBuilder().build(),
+                            new AuthUI.IdpConfig.GoogleBuilder().build()
+                    ))
+                    .setIsSmartLockEnabled(false)
+                    .setLogo(R.drawable.icon)
+                    .build();
+            startActivityForResult(intent, SIGNIN);
+            return true;
+        }
+        if(id == R.id.action_signout){
+            FirebaseAuth.getInstance().signOut();
             return true;
         }
 
