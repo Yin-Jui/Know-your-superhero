@@ -1,10 +1,13 @@
 package com.example.knowyoursuperhero;
 
+import android.content.Intent;
+import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-
+import android.widget.Button;
+import android.content.ContextWrapper;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.fragment.NavHostFragment;
@@ -30,5 +33,15 @@ public class FirstFragment extends Fragment {
                         .navigate(R.id.action_FirstFragment_to_SecondFragment);
             }
         });
+
+        final Button btnTakeQuiz = view.findViewById(R.id.quiz_button);
+        btnTakeQuiz.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+            Intent intent = new Intent(getActivity(), QuizActivity.class);
+            startActivity(intent);
+            }
+        });
     }
+
+
 }
