@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "652106992152",
+    "project_id": "know-your-superhero",
+    "storage_bucket": "know-your-superhero.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:652106992152:android:a52adc155d8b5526b3116d",
+        "android_client_info": {
+          "package_name": "com.example.knowyoursuperhero"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "652106992152-4oodn5pmr1pihctcgrorhfoeq7ir7d1b.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDgMO3GNeprC0VchuLRrlZsQYTXYHUWVHk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "652106992152-4oodn5pmr1pihctcgrorhfoeq7ir7d1b.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
