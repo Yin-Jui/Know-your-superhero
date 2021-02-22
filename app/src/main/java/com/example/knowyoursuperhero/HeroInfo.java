@@ -7,19 +7,19 @@ import java.util.List;
 public class HeroInfo {
 
     @SerializedName("name")
-    private String name;
+    private final String name;
     @SerializedName("powerstats")
-    private List powerStats;   // need to check the type, it will return JSON Array
+    private final Object powerStats;   // need to check the type, it will return JSON Array
     @SerializedName("appearance")
-    private List appearnace;
+    private final Object appearnace;
     @SerializedName("biography")
-    private List bio;
+    private final Object bio;
     @SerializedName("work")
-    private List work;
+    private final Object work;
     @SerializedName("connections")
-    private List connection;
+    private final Object connection;
     @SerializedName("image")
-    private String imageURL;
+    private final Object imageURL;
 
     public HeroInfo(String name, List powerStats, List appearnace, List bio, List work, List connection, String imageURL) {
         this.name = name;
@@ -35,27 +35,27 @@ public class HeroInfo {
         return name;
     }
 
-    public List getPowerStats() {
+    public Object getPowerStats() {
         return powerStats;
     }
 
-    public List getAppearnace() {
+    public Object getAppearnace() {
         return appearnace;
     }
 
-    public List getBio() {
+    public Object getBio() {
         return bio;
     }
 
-    public List getWork() {
+    public Object getWork() {
         return work;
     }
 
-    public List getConnection() {
+    public Object getConnection() {
         return connection;
     }
 
-    public String getImageURL() {
+    public Object getImageURL() {
         return imageURL;
     }
 }

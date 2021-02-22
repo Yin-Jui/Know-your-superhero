@@ -23,7 +23,7 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class HeroBaseActivity extends AppCompatActivity {
-    static final String BASE_URL = "https://superheroapi.com/api/1133497440454608/";
+    static final String BASE_URL = "https://www.superheroapi.com/api.php/1133497440454608/";
 
     static final String TAG = HeroBaseActivity.class.getSimpleName();
     static Retrofit retrofit = null;
@@ -66,7 +66,7 @@ public class HeroBaseActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call<Hero> call, Response<Hero> response) {
                 List<HeroInfo> listOfHero = response.body().getMyHero();
-
+                Log.e(TAG, "the size of list " + listOfHero.size());
                 supAdapter = new superHeroAdapter(listOfHero);
                 recyclerView = findViewById(R.id.supHeroList);
                 recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
@@ -75,7 +75,7 @@ public class HeroBaseActivity extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<Hero> call, Throwable t) {
-                Log.e(TAG, t.toString());
+                Log.e(TAG, "Here!! " + t.toString());
             }
         });
     }
