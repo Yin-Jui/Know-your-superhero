@@ -8,11 +8,28 @@ import com.google.android.material.snackbar.Snackbar;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
+import android.util.Log;
 import android.view.View;
 
+import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
+
 public class HeroBaseActivity extends AppCompatActivity {
-    static final String BASE_URL = "https://superheroapi.com/api/access-token/"; // need to add the access token
+    static final String BASE_URL = "https://superheroapi.com/api/1133497440454608/";
+
+    static final String TAG = HeroBaseActivity.class.getSimpleName();
+    static Retrofit retrofit = null;
+    private superHeroAdapter supAdapter;
+    private RecyclerView recyclerView;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -28,6 +45,37 @@ public class HeroBaseActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
+            }
+        });
+
+        connect();
+    }
+
+    public void connect() {
+        if (retrofit == null) {
+            retrofit = new Retrofit.Builder()
+                    .baseUrl(BASE_URL)
+                    .addConverterFactory(GsonConverterFactory.create())
+                    .build();
+        }
+
+        SuperHeroApiService superHeroApiService = retrofit.create(SuperHeroApiService.class);
+        Call<Hero> call = superHeroApiService.getHero("batman");
+
+        call.enqueue(new Callback<Hero>() {
+            @Override
+            public void onResponse(Call<Hero> call, Response<Hero> response) {
+                List<HeroInfo> listOfHero = response.body().getMyHero();
+
+                supAdapter = new superHeroAdapter(listOfHero);
+                recyclerView = findViewById(R.id.supHeroList);
+                recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
+                recyclerView.setAdapter(supAdapter);
+            }
+
+            @Override
+            public void onFailure(Call<Hero> call, Throwable t) {
+                Log.e(TAG, t.toString());
             }
         });
     }
