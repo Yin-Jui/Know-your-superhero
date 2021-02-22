@@ -12,7 +12,7 @@ import androidx.appcompat.widget.Toolbar;
 import android.view.View;
 
 public class HeroBaseActivity extends AppCompatActivity {
-
+    static final String BASE_URL = "https://superheroapi.com/api/access-token/"; // need to add the access token
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

@@ -1,0 +1,86 @@
+Index: app/src/main/java/com/example/knowyoursuperhero/FirstFragment.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.example.knowyoursuperhero;\n\nimport android.app.Activity;\nimport android.content.Intent;\nimport android.os.Bundle;\nimport android.util.Log;\nimport android.view.LayoutInflater;\nimport android.view.View;\nimport android.view.ViewGroup;\nimport android.widget.Button;\nimport android.widget.TextView;\n\nimport androidx.annotation.NonNull;\nimport androidx.annotation.Nullable;\nimport androidx.fragment.app.Fragment;\nimport androidx.navigation.fragment.NavHostFragment;\n\nimport com.google.firebase.auth.FirebaseAuth;\nimport com.google.firebase.auth.FirebaseUser;\n\npublic class FirstFragment extends Fragment {\n\n    @Override\n    public View onCreateView(\n\n            LayoutInflater inflater, ViewGroup container,\n            Bundle savedInstanceState\n    ) {\n        // Inflate the layout for this fragment\n        return inflater.inflate(R.layout.fragment_first, container, false);\n    }\n\n    public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {\n        super.onViewCreated(view, savedInstanceState);\n        view.findViewById(R.id.profileButton).setOnClickListener(new View.OnClickListener() {\n            @Override\n            public void onClick(View view) {\n                NavHostFragment.findNavController(FirstFragment.this)\n                        .navigate(R.id.action_FirstFragment_to_SecondFragment);\n            }\n        });\n    }\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/java/com/example/knowyoursuperhero/FirstFragment.java	(revision 82144e66d8a25547d6eb4a97ba17962976cc4a83)
++++ app/src/main/java/com/example/knowyoursuperhero/FirstFragment.java	(date 1613935547000)
+@@ -21,11 +21,7 @@
+ public class FirstFragment extends Fragment {
+ 
+     @Override
+-    public View onCreateView(
+-
+-            LayoutInflater inflater, ViewGroup container,
+-            Bundle savedInstanceState
+-    ) {
++    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+         // Inflate the layout for this fragment
+         return inflater.inflate(R.layout.fragment_first, container, false);
+     }
+@@ -39,5 +35,14 @@
+                         .navigate(R.id.action_FirstFragment_to_SecondFragment);
+             }
+         });
++
++        view.findViewById(R.id.herodatabse_button).setOnClickListener(new View.OnClickListener() {
++            @Override
++            public void onClick(View v) {
++                Intent intent = new Intent(getActivity(), HeroBaseActivity.class);
++                startActivity(intent);
++            }
++        });
+     }
++
+ }
+\ No newline at end of file
+Index: app/build.gradle
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>apply plugin: 'com.android.application'\napply plugin: 'com.google.gms.google-services'\napply plugin: 'kotlin-android'\napply plugin: 'kotlin-android-extensions'\n\nandroid {\n    compileSdkVersion 30\n    buildToolsVersion \"30.0.2\"\n\n    defaultConfig {\n        applicationId \"com.example.knowyoursuperhero\"\n        minSdkVersion 21\n        targetSdkVersion 30\n        versionCode 1\n        versionName \"1.0\"\n\n        testInstrumentationRunner \"androidx.test.runner.AndroidJUnitRunner\"\n    }\n\n    buildTypes {\n        release {\n            minifyEnabled false\n            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'\n        }\n    }\n}\n\ndependencies {\n    implementation fileTree(dir: \"libs\", include: [\"*.jar\"])\n    implementation 'androidx.appcompat:appcompat:1.2.0'\n    implementation 'com.google.android.material:material:1.0.0'\n    implementation 'androidx.constraintlayout:constraintlayout:2.0.4'\n    implementation 'androidx.navigation:navigation-fragment:2.1.0'\n    implementation 'androidx.navigation:navigation-ui:2.1.0'\n    implementation 'com.google.android.gms:play-services-maps:17.0.0'\n    implementation 'androidx.annotation:annotation:1.1.0'\n    implementation 'androidx.lifecycle:lifecycle-livedata-ktx:2.3.0'\n    implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.3.0'\n    implementation \"org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version\"\n    testImplementation 'junit:junit:4.12'\n    androidTestImplementation 'androidx.test.ext:junit:1.1.2'\n    androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'\n    implementation platform('com.google.firebase:firebase-bom:26.5.0')\n    implementation 'com.google.firebase:firebase-analytics'\n    implementation 'com.google.firebase:firebase-auth:20.0.2'\n    implementation 'com.google.android.gms:play-services-auth:19.0.0'\n    // FirebaseUI for Cloud Firestore\n    implementation 'com.firebaseui:firebase-ui-firestore:7.1.1'\n    // FirebaseUI for Firebase Auth\n    implementation 'com.firebaseui:firebase-ui-auth:7.1.1'\n    // FirebaseUI for Cloud Storage\n    implementation 'com.firebaseui:firebase-ui-storage:7.1.1'\n\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/build.gradle	(revision 82144e66d8a25547d6eb4a97ba17962976cc4a83)
++++ app/build.gradle	(date 1613940308000)
+@@ -23,6 +23,10 @@
+             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+         }
+     }
++    compileOptions {
++        sourceCompatibility = 1.8
++        targetCompatibility = 1.8
++    }
+ }
+ 
+ dependencies {
+@@ -44,6 +48,9 @@
+     implementation 'com.google.firebase:firebase-analytics'
+     implementation 'com.google.firebase:firebase-auth:20.0.2'
+     implementation 'com.google.android.gms:play-services-auth:19.0.0'
++    // retofit
++    implementation 'com.squareup.retrofit2:retrofit:2.7.1'
++    implementation 'com.squareup.retrofit2:converter-gson:2.7.1'
+     // FirebaseUI for Cloud Firestore
+     implementation 'com.firebaseui:firebase-ui-firestore:7.1.1'
+     // FirebaseUI for Firebase Auth
+Index: app/src/main/java/com/example/knowyoursuperhero/HeroBaseActivity.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.example.knowyoursuperhero;\n\nimport android.os.Bundle;\n\nimport com.google.android.material.appbar.CollapsingToolbarLayout;\nimport com.google.android.material.floatingactionbutton.FloatingActionButton;\nimport com.google.android.material.snackbar.Snackbar;\n\nimport androidx.appcompat.app.AppCompatActivity;\nimport androidx.appcompat.widget.Toolbar;\n\nimport android.view.View;\n\npublic class HeroBaseActivity extends AppCompatActivity {\n\n    @Override\n    protected void onCreate(Bundle savedInstanceState) {\n        super.onCreate(savedInstanceState);\n        setContentView(R.layout.activity_hero_base);\n        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);\n        setSupportActionBar(toolbar);\n        CollapsingToolbarLayout toolBarLayout = (CollapsingToolbarLayout) findViewById(R.id.toolbar_layout);\n        toolBarLayout.setTitle(getTitle());\n\n        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);\n        fab.setOnClickListener(new View.OnClickListener() {\n            @Override\n            public void onClick(View view) {\n                Snackbar.make(view, \"Replace with your own action\", Snackbar.LENGTH_LONG)\n                        .setAction(\"Action\", null).show();\n            }\n        });\n    }\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/java/com/example/knowyoursuperhero/HeroBaseActivity.java	(revision 82144e66d8a25547d6eb4a97ba17962976cc4a83)
++++ app/src/main/java/com/example/knowyoursuperhero/HeroBaseActivity.java	(date 1613938921000)
+@@ -12,7 +12,7 @@
+ import android.view.View;
+ 
+ public class HeroBaseActivity extends AppCompatActivity {
+-
++    static final String BASE_URL = "https://superheroapi.com/api/access-token/"; // need to add the access token
+     @Override
+     protected void onCreate(Bundle savedInstanceState) {
+         super.onCreate(savedInstanceState);
