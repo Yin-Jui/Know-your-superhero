@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="10dp" >
+
+    <ImageView
+        android:id="@+id/supImage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:srcCompat="@tools:sample/avatars" />
+
+    <TextView
+        android:id="@+id/info_id"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="info"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        />
+
+    <TextView
+        android:id="@+id/name_id"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="SupName"
+        />
+
+    <TextView
+        android:id="@+id/supGender_id"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="SupGender" />
+
+    <TextView
+        android:id="@+id/race_id"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="race" />
+
+    <TextView
+        android:id="@+id/height_id"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="height" />
+
+    <TextView
+        android:id="@+id/weight_id"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="weight" />
+
+    <TextView
+        android:id="@+id/eyeColor_id"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="weight" />
+
+    <TextView
+        android:id="@+id/hairColor_id"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="weight" />
+
+    <TextView
+        android:id="@+id/powerstats_id"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="powerstat"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"/>
+
+    <TextView
+        android:id="@+id/intelli_id"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="intelligence" />
+
+    <TextView
+        android:id="@+id/strength_id"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="strength" />
+
+    <TextView
+        android:id="@+id/speed_id"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="speed" />
+
+    <TextView
+        android:id="@+id/durability_id"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="durability" />
+
+    <TextView
+        android:id="@+id/power_id"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="power" />
+
+    <TextView
+        android:id="@+id/combat_id"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="combat" />
+
+
+</LinearLayout>

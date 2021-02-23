@@ -1,6 +1,7 @@
 package com.example.knowyoursuperhero;
 
 import com.google.gson.annotations.SerializedName;
+import com.google.gson.internal.LinkedTreeMap;
 
 import java.util.List;
 
@@ -58,4 +59,32 @@ public class HeroInfo {
     public Object getImageURL() {
         return imageURL;
     }
+
+    public String getValueAppearnace(String key) {
+        LinkedTreeMap temp = (LinkedTreeMap) appearnace;
+        return (String) temp.get(key);
+    }
+
+    public String getHeightAppearnace(String key) {
+        LinkedTreeMap temp = (LinkedTreeMap) appearnace;
+        if(key.equals("height")) {
+            List myList = (List) temp.get("height");
+            return (String) myList.get(0);
+        } else if(key.equals("weight")) {
+            List myList = (List) temp.get("weight");
+            return (String) myList.get(1);
+        }
+        return "a"; // this is just for compiler not to yell
+    }
+
+    public String getValueImageURL() {
+        LinkedTreeMap temp = (LinkedTreeMap) imageURL;
+        return (String) temp.get("url");
+    }
+
+    public String getValuePowerstat(String key) {
+        LinkedTreeMap temp = (LinkedTreeMap) powerStats;
+        return (String)  temp.get(key);
+    }
+
 }
