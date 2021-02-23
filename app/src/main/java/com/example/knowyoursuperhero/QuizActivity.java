@@ -33,7 +33,11 @@ public class QuizActivity extends AppCompatActivity {
         tv_progress.setText(currentQuestion+"/"+Q_num);
         defaultOptionsView();
 
-
+        ((TextView)findViewById(R.id.tv_question)).setText(q_list.get(currentQuestion-1).getQ());
+        ((TextView)findViewById(R.id.tv_option1)).setText(q_list.get(currentQuestion-1).getOpt1());
+        ((TextView)findViewById(R.id.tv_option2)).setText(q_list.get(currentQuestion-1).getOpt2());
+        ((TextView)findViewById(R.id.tv_option3)).setText(q_list.get(currentQuestion-1).getOpt3());
+        ((TextView)findViewById(R.id.tv_option4)).setText(q_list.get(currentQuestion-1).getOpt4());
 
         final View btnOption1 = findViewById(R.id.tv_option1);
         btnOption1.setOnClickListener(new View.OnClickListener() {
@@ -89,7 +93,7 @@ public class QuizActivity extends AppCompatActivity {
 
         });
 
-        setQuestion();
+//        setQuestion();
 
 
 
@@ -104,10 +108,10 @@ public class QuizActivity extends AppCompatActivity {
 //        Question  currQ =  q_list.get(currentQuestion);// Getting the question from the list with the help of current position.
 
         defaultOptionsView();
-        if(currentQuestion >= Q_num){
-            ((TextView)findViewById(R.id.button_next)).setText("SUMMIT!");
-        }else{
+        if(currentQuestion < Q_num-1){
             ((TextView)findViewById(R.id.button_next)).setText("Next");
+        }else{
+            ((TextView)findViewById(R.id.button_next)).setText("Summit");
         }
 
 
