@@ -12,6 +12,7 @@ import java.util.List;
 
 public class QuizActivity extends AppCompatActivity {
 
+    private int Q_num;
     private int currentQuestion = 1;
     private List<Question> q_list;
     private ProgressBar pb ;
@@ -22,10 +23,14 @@ public class QuizActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_quiz);
+        Contents ctn = new Contents();
+        Q_num = ctn.Q_number;
+        q_list = ctn.q_list;
+
         pb = findViewById(R.id.progress_bar);
-        pb.setMax(10);
+        pb.setMax(Q_num);
         tv_progress = findViewById(R.id.tv_progress);
-        tv_progress.setText(currentQuestion+"/10");
+        tv_progress.setText(currentQuestion+"/"+Q_num);
         defaultOptionsView();
 
 
@@ -33,8 +38,7 @@ public class QuizActivity extends AppCompatActivity {
         final View btnOption1 = findViewById(R.id.tv_option1);
         btnOption1.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-//                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-//                startActivity(intent);
+
                 defaultOptionsView();
                 selectedOptionView((TextView) findViewById(R.id.tv_option1),1);
 
@@ -76,17 +80,16 @@ public class QuizActivity extends AppCompatActivity {
         final View btnNext = findViewById(R.id.button_next);
         btnNext.setOnClickListener( (v) -> {
 
-            if(currentQuestion < 10)
+            if(currentQuestion < Q_num)
                 setQuestion();
             else{
-
-                Intent intent = new Intent(getBaseContext(), MainActivity.class);
+                Intent intent = new Intent(getBaseContext(), ResultActivity.class);
                 startActivity(intent);
             }
 
-
-
         });
+
+        setQuestion();
 
 
 
@@ -99,9 +102,9 @@ public class QuizActivity extends AppCompatActivity {
     private void setQuestion() {
 
 //        Question  currQ =  q_list.get(currentQuestion);// Getting the question from the list with the help of current position.
-        currentQuestion++;
+
         defaultOptionsView();
-        if(currentQuestion >= 10){
+        if(currentQuestion >= Q_num){
             ((TextView)findViewById(R.id.button_next)).setText("SUMMIT!");
         }else{
             ((TextView)findViewById(R.id.button_next)).setText("Next");
@@ -109,13 +112,16 @@ public class QuizActivity extends AppCompatActivity {
 
 
         pb.setProgress(currentQuestion);
-        tv_progress.setText(currentQuestion+"/10");
+        tv_progress.setText(currentQuestion+"/"+Q_num);
+        ((TextView)findViewById(R.id.tv_question)).setText(q_list.get(currentQuestion-1).getQ());
+        ((TextView)findViewById(R.id.tv_option1)).setText(q_list.get(currentQuestion-1).getOpt1());
+        ((TextView)findViewById(R.id.tv_option2)).setText(q_list.get(currentQuestion-1).getOpt2());
+        ((TextView)findViewById(R.id.tv_option3)).setText(q_list.get(currentQuestion-1).getOpt3());
+        ((TextView)findViewById(R.id.tv_option4)).setText(q_list.get(currentQuestion-1).getOpt4());
 
+        currentQuestion++;
     }
 
-    private void showResult(){
-
-    }
 
     private void selectedOptionView(TextView tv, int selectedNum) {
 
