@@ -55,9 +55,7 @@ public class QuizActivity extends AppCompatActivity {
 //                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
 //                startActivity(intent);
                 defaultOptionsView();
-
                 selectedOptionView((TextView) findViewById(R.id.tv_option2),1);
-
             }
         });
 
@@ -65,9 +63,7 @@ public class QuizActivity extends AppCompatActivity {
         btnOption3.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 defaultOptionsView();
-
                 selectedOptionView((TextView) findViewById(R.id.tv_option3),1);
-
             }
         });
 
@@ -75,9 +71,7 @@ public class QuizActivity extends AppCompatActivity {
         btnOption4.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 defaultOptionsView();
-
                 selectedOptionView((TextView) findViewById(R.id.tv_option4),1);
-
             }
         });
 
@@ -90,18 +84,9 @@ public class QuizActivity extends AppCompatActivity {
                 Intent intent = new Intent(getBaseContext(), ResultActivity.class);
                 startActivity(intent);
             }
-
         });
 
 //        setQuestion();
-
-
-
-
-
-
-
-
     }
     private void setQuestion() {
 
@@ -111,9 +96,9 @@ public class QuizActivity extends AppCompatActivity {
         if(currentQuestion < Q_num-1){
             ((TextView)findViewById(R.id.button_next)).setText("Next");
         }else{
-            ((TextView)findViewById(R.id.button_next)).setText("Summit");
+            ((TextView)findViewById(R.id.button_next)).setText("Submit");
         }
-
+        currentQuestion++;
 
         pb.setProgress(currentQuestion);
         tv_progress.setText(currentQuestion+"/"+Q_num);
@@ -122,15 +107,10 @@ public class QuizActivity extends AppCompatActivity {
         ((TextView)findViewById(R.id.tv_option2)).setText(q_list.get(currentQuestion-1).getOpt2());
         ((TextView)findViewById(R.id.tv_option3)).setText(q_list.get(currentQuestion-1).getOpt3());
         ((TextView)findViewById(R.id.tv_option4)).setText(q_list.get(currentQuestion-1).getOpt4());
-
-        currentQuestion++;
     }
 
 
     private void selectedOptionView(TextView tv, int selectedNum) {
-
-
-
         tv.setTextColor(
                 Color.parseColor("#FFFFFF")
         );
@@ -145,9 +125,7 @@ public class QuizActivity extends AppCompatActivity {
         options.add((TextView) findViewById(R.id.tv_option4));
 
         for (TextView option : options) {
-            option.setTextColor(Color.parseColor("#7A8089"));
-
-
+            option.setTextColor(Color.parseColor("#1b261e"));
         }
     }
 }

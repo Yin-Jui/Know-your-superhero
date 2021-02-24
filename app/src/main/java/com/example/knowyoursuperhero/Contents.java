@@ -8,14 +8,14 @@ public class Contents {
     public List<Question> q_list;
     public int Q_number = 1;
 
-    private Question q1 = new Question("what's your fav. food?",
+    private Question q1 = new Question("What's your fav. food?",
             "pizza","ramen", "sushi","blood");
 
-    private Question q2 = new Question("what's your fav. food?",
-            "pizza","ramen", "sushi","blood");
+    private Question q2 = new Question("Do you work out?",
+            "Always","Sometimes", "Never","Can't");
 
-    private Question q3 = new Question("what's your fav. food?",
-            "pizza","ramen", "sushi","blood");
+    private Question q3 = new Question("How tall are you?",
+            "Short","Average", "Tall","Goliath");
 
     public Contents(){
         q_list = new ArrayList<>();
