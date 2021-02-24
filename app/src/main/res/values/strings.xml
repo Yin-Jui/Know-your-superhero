@@ -44,4 +44,7 @@
         "interact, and exist in space and in relation to each other. Realistic lighting shows "
         "seams, divides space, and indicates moving parts.\n\n"
     </string>
+    <string name="facebook_application_id">335537907820572</string>
+    <string name="facebook_login_protocol_scheme">fb335537907820572</string>
+
 </resources>

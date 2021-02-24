@@ -60,4 +60,6 @@ dependencies {
     // FirebaseUI for Cloud Storage
     implementation 'com.firebaseui:firebase-ui-storage:7.1.1'
 
+    implementation 'com.facebook.android:facebook-android-sdk:[5,6)'
+
 }

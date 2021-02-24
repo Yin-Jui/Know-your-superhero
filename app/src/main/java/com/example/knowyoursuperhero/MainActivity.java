@@ -58,18 +58,19 @@ public class MainActivity extends AppCompatActivity {
         if (id == R.id.action_settings) {
             return true;
         }
-
         if (id == R.id.action_signin) {
             //startActivityForResult(new Intent(this, LoginActivity.class), SIGNIN);
             Intent intent = AuthUI.getInstance()
                     .createSignInIntentBuilder()
                     .setAvailableProviders(Arrays.asList(
                             new AuthUI.IdpConfig.EmailBuilder().build(),
-                            new AuthUI.IdpConfig.GoogleBuilder().build()
+                            new AuthUI.IdpConfig.GoogleBuilder().build(),
+                            new AuthUI.IdpConfig.PhoneBuilder().build()
                     ))
                     .setIsSmartLockEnabled(false)
                     .setLogo(R.drawable.icon)
                     .build();
+
             startActivityForResult(intent, SIGNIN);
             return true;
         }

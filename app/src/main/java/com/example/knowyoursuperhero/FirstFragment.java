@@ -41,19 +41,13 @@ public class FirstFragment extends Fragment implements FirebaseAuth.AuthStateLis
     @Override
     public void onStart() {
         super.onStart();
-        Log.d(TAG, "START");
-        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-        if(user != null){
-            user_info.setText("Email: " + user.getEmail() +"/"+ user.isEmailVerified());
-            if(user.isEmailVerified())
-                verify.setVisibility(View.GONE);
-            else
-                verify.setVisibility(View.VISIBLE);
-        }
-        else{
-            user_info.setText("Not login");
-            verify.setVisibility(View.GONE);
-        }
+        FirebaseAuth.getInstance().addAuthStateListener(this);
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        FirebaseAuth.getInstance().removeAuthStateListener(this);
     }
 
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
@@ -108,6 +102,17 @@ public class FirstFragment extends Fragment implements FirebaseAuth.AuthStateLis
     public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
         user_info.setText("Email");
         Log.d(TAG, "AUTH CHANGED");
-
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        if(user != null){
+            user_info.setText("Email: " + user.getEmail() +"/"+ user.isEmailVerified());
+            if(user.isEmailVerified())
+                verify.setVisibility(View.GONE);
+            else
+                verify.setVisibility(View.VISIBLE);
+        }
+        else{
+            user_info.setText("Not login");
+            verify.setVisibility(View.GONE);
+        }
     }
 }
