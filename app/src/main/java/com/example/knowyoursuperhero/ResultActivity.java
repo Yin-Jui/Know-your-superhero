@@ -16,7 +16,6 @@ public class ResultActivity extends AppCompatActivity {
 
         final Button btnMain = findViewById(R.id.btn_toMain);
 
-
         btnMain.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 Intent intent = new Intent(getBaseContext(), MainActivity.class);

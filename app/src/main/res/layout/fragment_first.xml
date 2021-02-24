@@ -92,11 +92,17 @@
 
     <Button
         android:id="@+id/verify"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        style="@style/Widget.AppCompat.Button.Small"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="4dp"
+        android:background="@drawable/oval"
+        android:backgroundTint="#FF9800"
         android:text="Verify"
+        android:textAppearance="@style/TextAppearance.AppCompat.Small"
+        android:textColor="#0B0B0B"
+        android:textSize="10sp"
         android:visibility="gone"
         app:layout_constraintStart_toEndOf="@+id/user_info"
         app:layout_constraintTop_toTopOf="parent" />

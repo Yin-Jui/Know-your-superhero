@@ -104,11 +104,14 @@ public class FirstFragment extends Fragment implements FirebaseAuth.AuthStateLis
         Log.d(TAG, "AUTH CHANGED");
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         if(user != null){
-            user_info.setText("Email: " + user.getEmail() +"/"+ user.isEmailVerified());
-            if(user.isEmailVerified())
+            if(user.isEmailVerified()){
+                user_info.setText("Email: " + user.getEmail() +"/"+ "Verified");
                 verify.setVisibility(View.GONE);
-            else
+            }
+            else{
+                user_info.setText("Email: " + user.getEmail() +"/"+ "Not verified");
                 verify.setVisibility(View.VISIBLE);
+            }
         }
         else{
             user_info.setText("Not login");
