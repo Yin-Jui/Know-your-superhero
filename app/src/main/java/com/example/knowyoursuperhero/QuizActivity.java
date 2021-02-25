@@ -29,6 +29,7 @@ public class QuizActivity extends AppCompatActivity {
 
         pb = findViewById(R.id.progress_bar);
         pb.setMax(Q_num);
+        pb.setProgress(currentQuestion);
         tv_progress = findViewById(R.id.tv_progress);
         tv_progress.setText(currentQuestion+"/"+Q_num);
         defaultOptionsView();
