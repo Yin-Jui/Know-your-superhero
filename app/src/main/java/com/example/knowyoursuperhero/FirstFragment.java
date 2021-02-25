@@ -109,8 +109,12 @@ public class FirstFragment extends Fragment implements FirebaseAuth.AuthStateLis
                 verify.setVisibility(View.GONE);
             }
             else{
-                user_info.setText("Email: " + user.getEmail() +"/"+ "Not verified");
+                user_info.setText("Email: " + user.getEmail() +"/"+ "Not verifie");
                 verify.setVisibility(View.VISIBLE);
+            }
+            if(user.getEmail() == null){
+                user_info.setText("Number: " + user.getPhoneNumber() +"/"+ "Verified");
+                verify.setVisibility(View.GONE);
             }
         }
         else{
