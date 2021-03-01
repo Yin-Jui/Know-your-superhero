@@ -40,6 +40,21 @@ public class superHeroAdapter extends RecyclerView.Adapter<superHeroAdapter.View
         TextView power;
         TextView combat;
 
+        TextView fullName;
+        TextView placeOfBirth;
+        TextView firstApp;
+        TextView publisher;
+        TextView alignment;
+
+        TextView work;
+        TextView occupation;
+        TextView base;
+
+        TextView connections;
+        TextView groupAffili;
+        TextView relatives;
+
+
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             info = itemView.findViewById(R.id.info_id);
@@ -59,6 +74,20 @@ public class superHeroAdapter extends RecyclerView.Adapter<superHeroAdapter.View
             durability = itemView.findViewById(R.id.durability_id);
             power = itemView.findViewById(R.id.power_id);
             combat = itemView.findViewById(R.id.combat_id);
+
+            fullName = itemView.findViewById(R.id.full_name_id);
+            placeOfBirth = itemView.findViewById(R.id.place_of_birth_id);
+            firstApp = itemView.findViewById(R.id.first_appearance_id);
+            publisher = itemView.findViewById(R.id.publisher_id);
+            alignment = itemView.findViewById(R.id.alignment_id);
+
+            work = itemView.findViewById(R.id.work_id);
+            occupation = itemView.findViewById(R.id.occupation_id);
+            base = itemView.findViewById(R.id.base_id);
+
+            connections = itemView.findViewById(R.id.connection_id);
+            groupAffili = itemView.findViewById(R.id.group_affiliation_id);
+            relatives = itemView.findViewById(R.id.relatives_id);
         }
     }
 
@@ -72,8 +101,16 @@ public class superHeroAdapter extends RecyclerView.Adapter<superHeroAdapter.View
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         Picasso.get().load(supData.get(position).getValueImageURL()).into(holder.supImage);
-        holder.info.setText("Info");
         holder.supName.setText(supData.get(position).getName());
+        holder.info.setText("biography");
+
+        holder.fullName.setText("Full-name: " + supData.get(position).getValueBiography("full-name"));
+        holder.placeOfBirth.setText("place-of-birth: " + supData.get(position).getValueBiography("place-of-birth"));
+        holder.firstApp.setText("first-appearance: " + supData.get(position).getValueBiography("first-appearance"));
+        holder.publisher.setText("publisher: " + supData.get(position).getValueBiography("publisher"));
+        holder.alignment.setText("alignment: " + supData.get(position).getValueBiography("alignment"));
+
+
         holder.supGender.setText("Gender: " + supData.get(position).getValueAppearnace("gender"));
         holder.supRace.setText("Race: " + supData.get(position).getValueAppearnace("race"));
         holder.supHeight.setText("Height: " + supData.get(position).getHeightAppearnace("height"));
@@ -88,6 +125,15 @@ public class superHeroAdapter extends RecyclerView.Adapter<superHeroAdapter.View
         holder.durability.setText("durability: " + supData.get(position).getValuePowerstat("durability"));
         holder.power.setText("power: " + supData.get(position).getValuePowerstat("power"));
         holder.combat.setText("combat: " + supData.get(position).getValuePowerstat("combat"));
+
+        holder.work.setText("Work");
+        holder.occupation.setText(("Occupation: " + supData.get(position).getValueWork("occupation")));
+        holder.base.setText(("Base: " + supData.get(position).getValueWork("base")));
+
+        holder.connections.setText("Connections");
+        holder.groupAffili.setText(("group-affiliation: " + supData.get(position).getValueConnections("group-affiliation")));
+        holder.relatives.setText(("relatives: " + supData.get(position).getValueConnections("relatives")));
+
 
     }
 

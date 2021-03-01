@@ -17,6 +17,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.SearchView;
 
@@ -59,6 +60,14 @@ public class HeroBaseActivity extends AppCompatActivity {
 //            }
 //        });
 
+
+        EditText searchResult = findViewById(R.id.search_bar);
+        String superHero = searchResult.getText().toString();
+//        if (superHero == null) {
+//            Log.e(TAG, "YOYOY: " + superHero);
+//            connect("batman");
+//        }
+//        else
         connect();
     }
 

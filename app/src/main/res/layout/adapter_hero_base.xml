@@ -7,11 +7,22 @@
     android:orientation="vertical"
     android:padding="10dp" >
 
+
+
     <ImageView
         android:id="@+id/supImage"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         tools:srcCompat="@tools:sample/avatars" />
+
+    <TextView
+        android:id="@+id/name_id"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="SupName"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        />
+
 
     <TextView
         android:id="@+id/info_id"
@@ -22,11 +33,34 @@
         />
 
     <TextView
-        android:id="@+id/name_id"
+        android:id="@+id/full_name_id"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="SupName"
-        />
+        android:text="fullName" />
+
+    <TextView
+        android:id="@+id/place_of_birth_id"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="PlaceOfBirth" />
+
+    <TextView
+        android:id="@+id/first_appearance_id"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="firstApp" />
+
+    <TextView
+        android:id="@+id/publisher_id"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="publisher" />
+
+    <TextView
+        android:id="@+id/alignment_id"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="alignment" />
 
     <TextView
         android:id="@+id/supGender_id"
@@ -107,5 +141,42 @@
         android:layout_height="wrap_content"
         android:text="combat" />
 
+    <TextView
+        android:id="@+id/work_id"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="work"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"/>
+
+    <TextView
+        android:id="@+id/occupation_id"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="occupation" />
+
+    <TextView
+        android:id="@+id/base_id"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="base" />
+
+    <TextView
+        android:id="@+id/connection_id"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="connection"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"/>
+
+    <TextView
+        android:id="@+id/group_affiliation_id"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="groupAffiliation" />
+
+    <TextView
+        android:id="@+id/relatives_id"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="relatives" />
 
 </LinearLayout>

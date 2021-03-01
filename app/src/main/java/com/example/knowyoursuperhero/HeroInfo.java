@@ -87,4 +87,37 @@ public class HeroInfo {
         return (String)  temp.get(key);
     }
 
+    public String getValueBiography (String key) {
+        LinkedTreeMap temp = (LinkedTreeMap) bio;
+        if (key.equals("full-name"))
+            return (String) temp.get(key);
+        else if (key.equals("place-of-birth"))
+            return (String) temp.get(key);
+        else if (key.equals("first-appearance"))
+            return (String) temp.get(key);
+        else if (key.equals("publisher"))
+            return (String) temp.get(key);
+        else if (key.equals("alignment"))
+            return (String) temp.get(key);
+        return "a";
+    }
+
+    public String getValueWork (String key) {
+        LinkedTreeMap temp = (LinkedTreeMap) work;
+        if(key.equals("occupation"))
+            return (String) temp.get(key);
+        else if (key.equals("base"))
+            return (String) temp.get(key);
+        return "a";
+    }
+
+    public String getValueConnections (String key) {
+        LinkedTreeMap temp = (LinkedTreeMap) connection;
+        if (key.equals("group-affiliation"))
+            return (String) temp.get(key);
+        else if (key.equals("relatives"))
+            return (String) temp.get(key);
+        return "a";
+    }
+
 }
