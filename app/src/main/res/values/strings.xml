@@ -10,6 +10,7 @@
     <!-- button labels + strings for main fragment  -->
     <string name="quiz">Take the Quiz!</string>
     <string name="database">Hero Database</string>
+    <string name="versus">Hero Vs Hero</string>
     <string name="gps">Nearby Users</string>
     <string name="logo_label">Know Your SuperHero Main Menu</string>
     <string name="username_label">Username:</string>
