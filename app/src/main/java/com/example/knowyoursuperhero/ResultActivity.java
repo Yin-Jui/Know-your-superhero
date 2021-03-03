@@ -165,7 +165,7 @@ public class ResultActivity extends AppCompatActivity {
     private double calculate_distance(HeroInfo hero){
 
         double sum = 0;
-        int count = 0;
+//        int count = 0;
         String value;
         Log.d("cal_",hero.getName());
         value = hero.getValuePowerstat("intelligence");
@@ -211,7 +211,7 @@ public class ResultActivity extends AppCompatActivity {
         }
 
         Log.d("cal_combat",value);
-        count++;
+//        count++;
         sum += Math.pow(Integer.parseInt(value)-result_scores[5],2);
 //        sum = sum/count;
         Log.e("distance",hero.getName()+": "+ Double.toString(sum));

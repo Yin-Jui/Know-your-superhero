@@ -26,10 +26,10 @@
         android:text="Main"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.501"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/heroName"
-        app:layout_constraintVertical_bias="0.626" />
+        app:layout_constraintVertical_bias="0.62" />
 
     <TextView
         android:id="@+id/heroName"
@@ -45,66 +45,68 @@
         app:layout_constraintTop_toBottomOf="@+id/textView3" />
 
     <TextView
-        android:id="@+id/tv_Intelligence"
-        android:layout_width="154dp"
-        android:layout_height="35dp"
-        android:layout_marginStart="40dp"
-        android:layout_marginTop="36dp"
+        android:id="@+id/tv_durability"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="48dp"
         android:text="TextView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/tv_Intelligence"
+        app:layout_constraintTop_toBottomOf="@+id/heroName" />
+
+    <TextView
+        android:id="@+id/tv_Intelligence"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="48dp"
+        android:text="TextView"
+        app:layout_constraintEnd_toStartOf="@+id/tv_durability"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/heroName" />
 
     <TextView
         android:id="@+id/tv_strength"
-        android:layout_width="154dp"
-        android:layout_height="35dp"
-        android:layout_marginStart="56dp"
-        android:layout_marginTop="52dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
         android:text="TextView"
+        app:layout_constraintEnd_toStartOf="@+id/tv_power"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_Intelligence" />
 
     <TextView
         android:id="@+id/tv_speed"
-        android:layout_width="154dp"
-        android:layout_height="35dp"
-        android:layout_marginTop="32dp"
-        android:layout_marginEnd="44dp"
-        android:text="TextView"
-        app:layout_constraintEnd_toStartOf="@+id/tv_combat"
-        app:layout_constraintHorizontal_bias="0.777"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_strength" />
-
-    <TextView
-        android:id="@+id/tv_durability"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="56dp"
-        android:layout_marginBottom="68dp"
+        android:layout_marginTop="24dp"
         android:text="TextView"
-        app:layout_constraintBottom_toTopOf="@+id/tv_power"
-        app:layout_constraintStart_toEndOf="@+id/tv_Intelligence"
-        app:layout_constraintTop_toBottomOf="@+id/heroName"
-        app:layout_constraintVertical_bias="0.83" />
+        app:layout_constraintEnd_toStartOf="@+id/tv_combat"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_strength" />
 
     <TextView
         android:id="@+id/tv_power"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="68dp"
+        android:layout_marginTop="24dp"
         android:text="TextView"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/tv_strength"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/tv_durability" />
 
     <TextView
         android:id="@+id/tv_combat"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="44dp"
-        android:layout_marginEnd="84dp"
+        android:layout_marginTop="24dp"
         android:text="TextView"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/tv_speed"
         app:layout_constraintTop_toBottomOf="@+id/tv_power" />
 </androidx.constraintlayout.widget.ConstraintLayout>
