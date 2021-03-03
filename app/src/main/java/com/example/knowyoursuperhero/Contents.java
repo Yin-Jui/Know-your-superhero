@@ -33,6 +33,8 @@ public class Contents {
         q_list.add(q2);
         q_list.add(q3);
         q_list.add(q4);
+        q_list.add(q5);
+        q_list.add(q6);
         Q_number = q_list.size();
     }
 
