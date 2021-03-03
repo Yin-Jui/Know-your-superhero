@@ -37,9 +37,10 @@ public class ResultActivity extends AppCompatActivity {
     public static final String results = "results";
     private static Retrofit retrofit = null;
     static final String BASE_URL = "https://www.superheroapi.com/api.php/1133497440454608/";
-    private HashMap<HeroInfo, Integer> distances;
+    private HashMap<HeroInfo, Double> distances;
     private int[] result_scores;
     private TextView hero;
+    private int count = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,6 +60,7 @@ public class ResultActivity extends AppCompatActivity {
         TextView combat = findViewById(R.id.tv_combat);
         hero = findViewById(R.id.heroName);
 
+
         intelligence.setText("Intelligence: "+result_scores[0]);
         strength.setText("Strength: "+result_scores[1]);
         speed.setText("Speed: "+result_scores[2]);
@@ -66,47 +68,10 @@ public class ResultActivity extends AppCompatActivity {
         power.setText("Power: "+result_scores[4]);
         combat.setText("Combat: "+result_scores[5]);
 
-        connect("spider-man",false);
-        connect("batman",false);
-        connect("groot",true);
-//        while(result_list.size() < 7){
-//            Log.e("result_page", "the size of hero list " + result_list.size());
-//            try {
-//                Thread.sleep(50);
-//            } catch (InterruptedException e) {
-//                e.printStackTrace();
-//            }
-//        }
-//        for(HeroInfo heroInfo : result_list){
-//            int a = calculate_distance(heroInfo);
-//            distances.put(heroInfo,a);
-//            Log.e("result_page", heroInfo.getName()+": " + a);
-//        }
-//
-//        Collections.sort(result_list, new Comparator<HeroInfo>() {
-//            @Override
-//            public int compare(HeroInfo heroInfo, HeroInfo t1) {
-//                return distances.get(heroInfo) - distances.get(t1);
-//            }
-//        });
+        connect("spider-man");
+        connect("batman");
+        connect("groot");
 
-
-//        Log.e("result_page", result_list.get(0).getName());
-
-
-
-
-        //mechanism for determining hero
-//        String res = "test";
-//        hero.setText(res);
-//        //Write into database
-//        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-//        if(user != null) {
-//            String uid = FirebaseAuth.getInstance().getCurrentUser().getUid();
-//            FirebaseFirestore.getInstance().collection("users")
-//                    .document(uid)
-//                    .update("hero", res);
-//        }
 
 
         final Button btnMain = findViewById(R.id.btn_toMain);
@@ -121,7 +86,7 @@ public class ResultActivity extends AppCompatActivity {
 
 
 
-    public void connect(String superHero, boolean last) {
+    public void connect(String superHero) {
         if (retrofit == null) {
             retrofit = new Retrofit.Builder()
                     .baseUrl(BASE_URL)
@@ -138,25 +103,31 @@ public class ResultActivity extends AppCompatActivity {
 
 
                 result_list.addAll(response.body().getMyHero());
-                Log.e("result_page", "the size of hero list " + result_list.size());
-
+//                Log.e("on_response", "the size of hero list " + result_list.size());
+                count++;
 //                supAdapter = new superHeroAdapter(listOfHero);
 //                recyclerView = findViewById(R.id.supHeroList);
 //                recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
 //                recyclerView.setAdapter(supAdapter);
 
 
-                if(last){
+                if(count == 3){
+//                    Log.e("last", result_list.size()+" ");
                     for(HeroInfo heroInfo : result_list){
-                        int a = calculate_distance(heroInfo);
+//                        Log.e("last", heroInfo.getName()+" "+heroInfo.getValuePowerstat("intelligence"));
+                        double a = calculate_distance(heroInfo);
                         distances.put(heroInfo,a);
-                        Log.e("result_page", heroInfo.getName()+": " + a);
+//                        Log.e("result_page", heroInfo.getName()+": " + a);
                     }
 
                     Collections.sort(result_list, new Comparator<HeroInfo>() {
                         @Override
                         public int compare(HeroInfo heroInfo, HeroInfo t1) {
-                            return distances.get(heroInfo) - distances.get(t1);
+                            if(distances.get(heroInfo) < distances.get(t1) )
+                                return -1;
+                            else if(distances.get(heroInfo) > distances.get(t1))
+                                return 1;
+                            return 0;
                         }
                     });
 
@@ -181,16 +152,49 @@ public class ResultActivity extends AppCompatActivity {
         });
     }
 
-    private int calculate_distance(HeroInfo hero){
+    private double calculate_distance(HeroInfo hero){
 
-        int sum = 0;
-        sum += Math.pow(Integer.parseInt(hero.getValuePowerstat("intelligence"))-result_scores[0],2);
-        sum += Math.pow(Integer.parseInt(hero.getValuePowerstat("strength"))-result_scores[1],2);
-        sum += Math.pow(Integer.parseInt(hero.getValuePowerstat("speed"))-result_scores[2],2);
-        sum += Math.pow(Integer.parseInt(hero.getValuePowerstat("durability"))-result_scores[3],2);
-        sum += Math.pow(Integer.parseInt(hero.getValuePowerstat("power"))-result_scores[4],2);
-        sum += Math.pow(Integer.parseInt(hero.getValuePowerstat("combat"))-result_scores[5],2);
+        double sum = 0;
+        int count = 0;
+        String value;
 
+        value = hero.getValuePowerstat("intelligence");
+        Log.d("cal___",value);
+        Log.d("cal", String.valueOf((value.equals("null"))));
+        if(!value.equals("null")){
+            Log.d("cal___",value);
+            count++;
+            sum += Math.pow(Integer.parseInt(value)-result_scores[0],2);
+        }
+        value = hero.getValuePowerstat("strength");
+        if(!value.equals("null")){
+            count++;
+            sum += Math.pow(Integer.parseInt(value)-result_scores[0],2);
+        }
+        value = hero.getValuePowerstat("speed");
+        if(!value.equals("null")){
+            count++;
+            sum += Math.pow(Integer.parseInt(value)-result_scores[0],2);
+        }
+        value = hero.getValuePowerstat("durability");
+        if(!value.equals("null")){
+            count++;
+            sum += Math.pow(Integer.parseInt(value)-result_scores[0],2);
+        }
+        value = hero.getValuePowerstat("power");
+        if(!value.equals("null")){
+            count++;
+            sum += Math.pow(Integer.parseInt(value)-result_scores[0],2);
+        }
+        value = hero.getValuePowerstat("combat");
+        if(!value.equals("null")){
+            count++;
+            sum += Math.pow(Integer.parseInt(value)-result_scores[0],2);
+        }
+        sum = sum/count;
+        Log.e("distance",hero.getName()+": "+ Double.toString(sum));
+        if(sum == 0)
+            return Integer.MAX_VALUE;
         return sum;
     }
 
