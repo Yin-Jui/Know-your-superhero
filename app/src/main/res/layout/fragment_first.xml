@@ -91,10 +91,10 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:layout_marginEnd="10dp"
-        android:layout_marginRight="10dp"
-        android:src="@android:drawable/ic_menu_manage"
+        android:src="@drawable/fui_ic_anonymous_white_24dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        tools:src="@drawable/fui_ic_anonymous_white_24dp" />
 
     <TextView
         android:id="@+id/user_info"

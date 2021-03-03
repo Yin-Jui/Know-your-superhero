@@ -100,6 +100,7 @@ public class superHeroAdapter extends RecyclerView.Adapter<superHeroAdapter.View
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
+
         Picasso.get().load(supData.get(position).getValueImageURL()).into(holder.supImage);
         holder.supName.setText(supData.get(position).getName());
         holder.info.setText("biography");

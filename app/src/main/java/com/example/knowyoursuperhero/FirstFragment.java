@@ -20,6 +20,7 @@ import com.google.android.gms.tasks.Task;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 public class FirstFragment extends Fragment implements FirebaseAuth.AuthStateListener {
 
@@ -56,7 +57,6 @@ public class FirstFragment extends Fragment implements FirebaseAuth.AuthStateLis
 
         user_info = view.findViewById(R.id.user_info);
         verify = view.findViewById(R.id.verify);
-
 
         verify.setOnClickListener(new View.OnClickListener(){
             @Override
@@ -104,6 +104,8 @@ public class FirstFragment extends Fragment implements FirebaseAuth.AuthStateLis
         Log.d(TAG, "AUTH CHANGED");
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         if(user != null){
+            String uid = FirebaseAuth.getInstance().getCurrentUser().getUid();
+            Utility.Companion.checkExist(uid);
             if(user.isEmailVerified()){
                 user_info.setText("Email: " + user.getEmail() +"/"+ "Verified");
                 verify.setVisibility(View.GONE);

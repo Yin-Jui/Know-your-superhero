@@ -28,11 +28,11 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.501"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView4"
+        app:layout_constraintTop_toBottomOf="@+id/heroName"
         app:layout_constraintVertical_bias="0.626" />
 
     <TextView
-        android:id="@+id/textView4"
+        android:id="@+id/heroName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="50dp"
@@ -52,7 +52,7 @@
         android:layout_marginTop="36dp"
         android:text="TextView"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView4" />
+        app:layout_constraintTop_toBottomOf="@+id/heroName" />
 
     <TextView
         android:id="@+id/tv_strength"
@@ -85,7 +85,7 @@
         android:text="TextView"
         app:layout_constraintBottom_toTopOf="@+id/tv_power"
         app:layout_constraintStart_toEndOf="@+id/tv_Intelligence"
-        app:layout_constraintTop_toBottomOf="@+id/textView4"
+        app:layout_constraintTop_toBottomOf="@+id/heroName"
         app:layout_constraintVertical_bias="0.83" />
 
     <TextView
