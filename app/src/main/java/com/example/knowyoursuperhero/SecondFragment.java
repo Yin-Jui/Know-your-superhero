@@ -1,12 +1,12 @@
 package com.example.knowyoursuperhero;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -20,17 +20,18 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.squareup.picasso.Picasso;
 
 import org.jetbrains.annotations.NotNull;
 
 import kotlin.jvm.internal.Intrinsics;
-import kotlin.jvm.internal.Ref;
 
 public class SecondFragment extends Fragment {
 
     Button save;
     EditText userName;
     TextView hero;
+    ImageView image;
 
     @Override
     public View onCreateView(
@@ -48,6 +49,7 @@ public class SecondFragment extends Fragment {
         save = view.findViewById(R.id.save);
         userName = view.findViewById(R.id.userName);
         hero = view.findViewById(R.id.hero);
+        image = view.findViewById(R.id.heroImage);
        // String name = Utility.Companion.checkLogin();
 
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
@@ -62,6 +64,8 @@ public class SecondFragment extends Fragment {
                         if (user != null) {
                             userName.setText(user.getUsername());
                             hero.setText(user.getHero());
+                            if(!user.getImageUrl().equals(""))
+                                Picasso.get().load(user.getImageUrl()).into(image);
                         }
                     }
 
