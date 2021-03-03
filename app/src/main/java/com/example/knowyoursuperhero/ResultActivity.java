@@ -68,6 +68,8 @@ public class ResultActivity extends AppCompatActivity {
         power.setText("Power: "+result_scores[4]);
         combat.setText("Combat: "+result_scores[5]);
 
+
+        //hardcode 10 potential results, might be modified
         connect("spider-man");
         connect("batman");
         connect("groot");
@@ -168,10 +170,10 @@ public class ResultActivity extends AppCompatActivity {
         String value;
 
         value = hero.getValuePowerstat("intelligence");
-        Log.d("cal___",value);
-        Log.d("cal", String.valueOf((value.equals("null"))));
+//        Log.d("cal___",value);
+//        Log.d("cal", String.valueOf((value.equals("null"))));
         if(!value.equals("null")){
-            Log.d("cal___",value);
+//            Log.d("cal___",value);
             count++;
             sum += Math.pow(Integer.parseInt(value)-result_scores[0],2);
         }

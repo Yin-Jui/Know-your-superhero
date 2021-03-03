@@ -20,10 +20,10 @@ public class Contents {
     private Question q4 = new Question("What animal would you describe yourself as?",
             "Starfish","Turtles", "Rabbits","Leopards",Question.SPEED);
 
-    private Question q5 = new Question("What animal would you describe yourself as?",
-            "Starfish","Turtles", "Rabbits","Leopards",Question.POWER);
-    private Question q6 = new Question("What animal would you describe yourself as?",
-            "Starfish","Turtles", "Rabbits","Leopards",Question.COMBAT);
+    private Question q5 = new Question("How long do you need to sleep?",
+            "12 Hours","9 Hours", "4 Hours","Not at All",Question.POWER);
+    private Question q6 = new Question("How much do you like to fight",
+            "Hate it!","Avoid it if possible", "Good at fighting!","Love it!",Question.COMBAT);
 
 
 
