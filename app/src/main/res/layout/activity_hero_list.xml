@@ -17,9 +17,15 @@
         android:drawableStart="@drawable/ic_baseline_search_24"
         android:ems="10"
         android:hint="Search..."
-        android:inputType="text"
         android:imeOptions="actionDone"
+        android:inputType="text"
         android:singleLine="true" />
+
+    <Button
+        android:id="@+id/search_btn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Search" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/supHeroList"

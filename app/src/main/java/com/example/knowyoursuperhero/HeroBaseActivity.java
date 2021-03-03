@@ -17,6 +17,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.SearchView;
@@ -60,18 +61,20 @@ public class HeroBaseActivity extends AppCompatActivity {
 //            }
 //        });
 
+        findViewById(R.id.search_btn).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Log.d("testing", "Onclick search botton!!!!");
+                EditText searchResult = findViewById(R.id.search_bar);
+                String superHero = searchResult.getText().toString();
+                connect(superHero);
+            }
+        });
 
-        EditText searchResult = findViewById(R.id.search_bar);
-        String superHero = searchResult.getText().toString();
-//        if (superHero == null) {
-//            Log.e(TAG, "YOYOY: " + superHero);
-//            connect("batman");
-//        }
-//        else
-        connect();
+        connect("batman");
     }
 
-    public void connect() {
+    public void connect(String superHero) {
         if (retrofit == null) {
             retrofit = new Retrofit.Builder()
                     .baseUrl(BASE_URL)
@@ -80,7 +83,7 @@ public class HeroBaseActivity extends AppCompatActivity {
         }
 
         SuperHeroApiService superHeroApiService = retrofit.create(SuperHeroApiService.class);
-        Call<Hero> call = superHeroApiService.getHero("batman");
+        Call<Hero> call = superHeroApiService.getHero(superHero);
 
         call.enqueue(new Callback<Hero>() {
             @Override
