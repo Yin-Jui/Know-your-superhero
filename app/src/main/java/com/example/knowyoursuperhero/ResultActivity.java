@@ -167,44 +167,56 @@ public class ResultActivity extends AppCompatActivity {
         double sum = 0;
         int count = 0;
         String value;
-
+        Log.d("cal_",hero.getName());
         value = hero.getValuePowerstat("intelligence");
 //        Log.d("cal___",value);
 //        Log.d("cal", String.valueOf((value.equals("null"))));
-        if(!value.equals("null")){
-//            Log.d("cal___",value);
-            count++;
-            sum += Math.pow(Integer.parseInt(value)-result_scores[0],2);
-        }
-        value = hero.getValuePowerstat("strength");
-        if(!value.equals("null")){
-            count++;
-            sum += Math.pow(Integer.parseInt(value)-result_scores[1],2);
-        }
-        value = hero.getValuePowerstat("speed");
-        if(!value.equals("null")){
-            count++;
-            sum += Math.pow(Integer.parseInt(value)-result_scores[2],2);
-        }
-        value = hero.getValuePowerstat("durability");
-        if(!value.equals("null")){
-            count++;
-            sum += Math.pow(Integer.parseInt(value)-result_scores[3],2);
-        }
-        value = hero.getValuePowerstat("power");
-        if(!value.equals("null")){
-            count++;
-            sum += Math.pow(Integer.parseInt(value)-result_scores[4],2);
-        }
-        value = hero.getValuePowerstat("combat");
-        if(!value.equals("null")){
-            count++;
-            sum += Math.pow(Integer.parseInt(value)-result_scores[5],2);
-        }
-        sum = sum/count;
-        Log.e("distance",hero.getName()+": "+ Double.toString(sum));
-        if(sum == 0)
+        if(value.equals("null")){
             return Integer.MAX_VALUE;
+        }
+        Log.d("cal_intelli",value);
+        sum += Math.pow(Integer.parseInt(value)-result_scores[0],2);
+
+        value = hero.getValuePowerstat("strength");
+        if(value.equals("null")){
+            return Integer.MAX_VALUE;
+        }
+        Log.d("cal_strength",value);
+        sum += Math.pow(Integer.parseInt(value)-result_scores[1],2);
+        value = hero.getValuePowerstat("speed");
+        if(value.equals("null")){
+            return Integer.MAX_VALUE;
+
+        }
+        Log.d("cal_speed",value);
+        sum += Math.pow(Integer.parseInt(value)-result_scores[2],2);
+        value = hero.getValuePowerstat("durability");
+        if(value.equals("null")){
+
+            return Integer.MAX_VALUE;
+        }
+        Log.d("cal_durability",value);
+        sum += Math.pow(Integer.parseInt(value)-result_scores[3],2);
+        value = hero.getValuePowerstat("power");
+        if(value.equals("null")){
+            return Integer.MAX_VALUE;
+
+        }
+        Log.d("cal_power",value);
+        sum += Math.pow(Integer.parseInt(value)-result_scores[4],2);
+        value = hero.getValuePowerstat("combat");
+        if(value.equals("null")){
+            return Integer.MAX_VALUE;
+
+        }
+
+        Log.d("cal_combat",value);
+        count++;
+        sum += Math.pow(Integer.parseInt(value)-result_scores[5],2);
+//        sum = sum/count;
+        Log.e("distance",hero.getName()+": "+ Double.toString(sum));
+//        if(sum == 0)
+//            return Integer.MAX_VALUE;
         return sum;
     }
 
