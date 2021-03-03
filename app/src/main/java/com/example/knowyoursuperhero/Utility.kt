@@ -42,24 +42,5 @@ class Utility {
                         }
             }
         }
-
-        fun checkLogin(): String {
-            val user = FirebaseAuth.getInstance().currentUser
-            var name: String = ""
-            if (user != null) {
-                val uid = FirebaseAuth.getInstance().currentUser!!.uid
-                FirebaseFirestore.getInstance().collection("users")
-                        .document(uid).get()
-                        .addOnCompleteListener { task ->
-                            if (task.isSuccessful) {
-                                val user: Users? = task.result?.toObject(Users::class.java)
-                                if (user != null) {
-                                    name = user.username
-                                }
-                            }
-                        }
-            }
-            return name
-        }
     }
 }

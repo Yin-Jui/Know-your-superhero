@@ -1,14 +1,13 @@
 package com.example.knowyoursuperhero;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -20,11 +19,6 @@ import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
-import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -144,6 +138,7 @@ public class ResultActivity extends AppCompatActivity {
 
 
                     String res = result_list.get(0).getName();
+                    String image_url = result_list.get(0).getValueImageURL();
                     hero.setText(res);
                     //Write into database
                     FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
@@ -152,6 +147,10 @@ public class ResultActivity extends AppCompatActivity {
                         FirebaseFirestore.getInstance().collection("users")
                                 .document(uid)
                                 .update("hero", res);
+
+                        FirebaseFirestore.getInstance().collection("users")
+                                .document(uid)
+                                .update("imageUrl", image_url);
                     }
                 }
             }
