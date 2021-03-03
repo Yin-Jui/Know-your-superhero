@@ -12,13 +12,19 @@ public class Contents {
             "pizza","ramen", "sushi","blood", Question.INTELLIGENCE);
 
     private Question q2 = new Question("Do you work out?",
-            "Always","Sometimes", "Never","Can't",Question.STRENGTH);
+            "Can't", "Never","Sometimes","Always",Question.STRENGTH);
 
     private Question q3 = new Question("How tall are you?",
             "Short","Average", "Tall","Goliath",Question.DURABILITY);
 
     private Question q4 = new Question("What animal would you describe yourself as?",
             "Starfish","Turtles", "Rabbits","Leopards",Question.SPEED);
+
+    private Question q5 = new Question("What animal would you describe yourself as?",
+            "Starfish","Turtles", "Rabbits","Leopards",Question.POWER);
+    private Question q6 = new Question("What animal would you describe yourself as?",
+            "Starfish","Turtles", "Rabbits","Leopards",Question.COMBAT);
+
 
 
     public Contents(){

@@ -71,6 +71,15 @@ public class ResultActivity extends AppCompatActivity {
         connect("spider-man");
         connect("batman");
         connect("groot");
+        connect("Iceman");
+        connect("X-Man");
+        connect("Hulk");
+        connect("Ant-Man");
+        connect("Armor");
+        connect("Arsenal");
+        connect("Godzilla");
+
+
 
 
 
@@ -103,7 +112,7 @@ public class ResultActivity extends AppCompatActivity {
 
 
                 result_list.addAll(response.body().getMyHero());
-//                Log.e("on_response", "the size of hero list " + result_list.size());
+                Log.e("on_response", "the size of hero list " + result_list.size());
                 count++;
 //                supAdapter = new superHeroAdapter(listOfHero);
 //                recyclerView = findViewById(R.id.supHeroList);
@@ -111,8 +120,8 @@ public class ResultActivity extends AppCompatActivity {
 //                recyclerView.setAdapter(supAdapter);
 
 
-                if(count == 3){
-//                    Log.e("last", result_list.size()+" ");
+                if(count == 10){
+                    Log.e("last", result_list.size()+" ");
                     for(HeroInfo heroInfo : result_list){
 //                        Log.e("last", heroInfo.getName()+" "+heroInfo.getValuePowerstat("intelligence"));
                         double a = calculate_distance(heroInfo);
