@@ -9,4 +9,7 @@ public interface SuperHeroApiService {
     //need to get access token
     @GET("search/{name}")
     Call<Hero> getHero(@Path("name") String name);
+
+//    @GET("{id}")
+//    Call<Hero> getHeroByID(@Path("id") int character_id);
 }
