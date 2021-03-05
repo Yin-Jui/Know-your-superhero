@@ -3,6 +3,7 @@ package com.example.knowyoursuperhero;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -11,6 +12,7 @@ import android.widget.ImageView;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
 import retrofit2.Call;
@@ -26,6 +28,7 @@ public class HeroFightActivity extends AppCompatActivity {
     private List<HeroInfo> result_list;
     private List<HeroInfo> hero_list;
     private List<ImageView> images;
+    private LinkedList<Object[]> chosen;
 
     private static Retrofit retrofit = null;
     static final String BASE_URL = "https://www.superheroapi.com/api.php/1133497440454608/";
@@ -36,6 +39,7 @@ public class HeroFightActivity extends AppCompatActivity {
         setContentView(R.layout.activity_hero_fight);
         result_list = new ArrayList<>();
         hero_list = new ArrayList<>();
+        chosen = new LinkedList<>();
         images = new ArrayList<>();
 
         Button main_menu = findViewById(R.id.button2);
@@ -76,18 +80,6 @@ public class HeroFightActivity extends AppCompatActivity {
         connect("Godzilla");
         connect("Iron Man");
 
-//        String imageUri = "https://i.imgur.com/tGbaZCY.jpg";
-//        ImageView ivBasicImage1 = (ImageView) findViewById(R.id.iv_1_1);
-//        Picasso.get().load(imageUri).resize(450,450).centerCrop().into(ivBasicImage1);
-//        ImageView ivBasicImage2 = (ImageView) findViewById(R.id.iv_1_2);
-//        Picasso.get().load(imageUri).resize(450,450).centerCrop().into(ivBasicImage2);
-//        ImageView ivBasicImage3 = (ImageView) findViewById(R.id.iv_1_3);
-//        Picasso.get().load(imageUri).resize(450,450).centerCrop().into(ivBasicImage3);
-
-
-//        recyclerView = findViewById(R.id.herofightlist);
-//        recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
-//        recyclerView.setAdapter(supAdapter);
     }
 
 
@@ -122,12 +114,35 @@ public class HeroFightActivity extends AppCompatActivity {
                     Log.e("count" ,Integer.toString( hero_list.size()));
                     for(int i = 0 ; i < Math.min(hero_list.size(),images.size()) ; i ++){
 
-
                         ImageView ivBasicImage = images.get(i);
                         Picasso.get().load(hero_list.get(i).getValueImageURL()).resize(450,450).centerCrop().into(ivBasicImage);
+                        int finalI = i;
+                        ivBasicImage.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View view) {
+                                if(ivBasicImage.getBackground() == null) {
+                                    Drawable highlight = getResources().getDrawable(R.drawable.highlight_hero_fight);
+                                    ivBasicImage.setBackground(highlight);
+                                    chosen.add(new Object[]{hero_list.get(finalI), ivBasicImage});
+                                    if (chosen.size() > 2) {
+                                        Object[] temp = chosen.pop();
+                                        ((ImageView) temp[1]).setBackground(null);
+                                    }
 
-//                        double a = calculate_distance(heroInfo);
-//                        distances.put(heroInfo,a);
+                                }else{
+                                    ivBasicImage.setBackground(null);
+                                    for(Object[] o : chosen){
+                                        if(o[1] == ivBasicImage){
+                                            chosen.remove(o);
+                                            break;
+                                        }
+                                    }
+                                }
+                                for(Object[] h : chosen)
+                                    Log.e("click_", ((HeroInfo)h[0]).getName());
+                            }
+                        });
+
                     }
                 }
             }
