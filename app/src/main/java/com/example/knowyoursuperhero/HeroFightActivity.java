@@ -4,8 +4,11 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -42,6 +45,16 @@ public class HeroFightActivity extends AppCompatActivity {
         result_list = new ArrayList<>();
         hero_list = new ArrayList<>();
         images = new ArrayList<>();
+
+        Button main_menu = findViewById(R.id.button2);
+        main_menu.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                Intent intent = new Intent(getBaseContext(), MainActivity.class);
+                startActivity(intent);
+            }
+        });
+
+
         images.add((ImageView) findViewById(R.id.iv_1_1));
         images.add((ImageView) findViewById(R.id.iv_1_2));
         images.add((ImageView) findViewById(R.id.iv_1_3));
