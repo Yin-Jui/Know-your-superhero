@@ -1,7 +1,7 @@
 package com.example.knowyoursuperhero;
 
 import androidx.appcompat.app.AppCompatActivity;
-
+import com.google.gson.Gson;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
@@ -46,6 +46,24 @@ public class HeroFightActivity extends AppCompatActivity {
         main_menu.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 Intent intent = new Intent(getBaseContext(), MainActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        Button btn_fight_rslt = findViewById(R.id.button3);
+        btn_fight_rslt.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getBaseContext(), FightResultActivity.class);
+                String[] chosen_str = new String[3];
+                for(int i = 0 ; i < 2 ; i++){
+                    chosen_str[i] = ((HeroInfo)chosen.get(i)[0]).getValueImageURL();
+                }
+                if( Integer.parseInt( ((HeroInfo)chosen.get(0)[0]).getValuePowerstat("combat") )> Integer.parseInt (((HeroInfo)chosen.get(1)[0]).getValuePowerstat("combat")))
+                    chosen_str[2] = "0";
+                else
+                    chosen_str[2] = "1";
+                intent.putExtra(FightResultActivity.chosen,chosen_str);
                 startActivity(intent);
             }
         });
