@@ -10,6 +10,6 @@ public interface SuperHeroApiService {
     @GET("search/{name}")
     Call<Hero> getHero(@Path("name") String name);
 
-//    @GET("{id}")
-//    Call<Hero> getHeroByID(@Path("id") int character_id);
+//    @GET("{id}/image")
+//    Call<Hero> getHeroImage(@Path("id") int character_id);
 }

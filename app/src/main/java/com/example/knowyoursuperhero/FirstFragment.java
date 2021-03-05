@@ -89,10 +89,16 @@ public class FirstFragment extends Fragment implements FirebaseAuth.AuthStateLis
             }
         });
 
-        final Button btnTakeQuiz = view.findViewById(R.id.quiz_button);
-        btnTakeQuiz.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
+        view.findViewById(R.id.quiz_button).setOnClickListener(new View.OnClickListener() {
+             public void onClick(View v) {
                 Intent intent = new Intent(getActivity(), QuizActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        view.findViewById(R.id.hero_fight).setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), HeroFightActivity.class);
                 startActivity(intent);
             }
         });
