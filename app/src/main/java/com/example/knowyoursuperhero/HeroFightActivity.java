@@ -29,6 +29,7 @@ public class HeroFightActivity extends AppCompatActivity {
 //    private RecyclerView recyclerView;
     private int count = 0;
     private List<HeroInfo> result_list;
+    private List<HeroInfo> hero_list;
     private List<ImageView> images;
 
     private static Retrofit retrofit = null;
@@ -39,6 +40,7 @@ public class HeroFightActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_hero_fight);
         result_list = new ArrayList<>();
+        hero_list = new ArrayList<>();
         images = new ArrayList<>();
         images.add((ImageView) findViewById(R.id.iv_1_1));
         images.add((ImageView) findViewById(R.id.iv_1_2));
@@ -53,6 +55,9 @@ public class HeroFightActivity extends AppCompatActivity {
         images.add((ImageView) findViewById(R.id.imageView6));
         images.add((ImageView) findViewById(R.id.imageView5));
         images.add((ImageView) findViewById(R.id.imageView4));
+        images.add((ImageView) findViewById(R.id.imageView8));
+        images.add((ImageView) findViewById(R.id.imageView9));
+        images.add((ImageView) findViewById(R.id.imageView7));
 
         connect("spider-man");
         connect("batman");
@@ -64,6 +69,7 @@ public class HeroFightActivity extends AppCompatActivity {
         connect("Armor");
         connect("Arsenal");
         connect("Godzilla");
+        connect("Iron Man");
 
 //        String imageUri = "https://i.imgur.com/tGbaZCY.jpg";
 //        ImageView ivBasicImage1 = (ImageView) findViewById(R.id.iv_1_1);
@@ -101,13 +107,19 @@ public class HeroFightActivity extends AppCompatActivity {
                 count++;
 
 
-                if(count == 10){
+                if(count == 11){
 
-                    for(int i = 0 ; i < Math.min(result_list.size(),images.size()) ; i ++){
+                    for(HeroInfo hero : result_list){
+                        if(!hero.getValuePowerstat("combat").equals("null"))
+                            hero_list.add(hero);
+                    }
+
+                    Log.e("count" ,Integer.toString( hero_list.size()));
+                    for(int i = 0 ; i < Math.min(hero_list.size(),images.size()) ; i ++){
 
 
                         ImageView ivBasicImage = images.get(i);
-                        Picasso.get().load(result_list.get(i).getValueImageURL()).resize(450,450).centerCrop().into(ivBasicImage);
+                        Picasso.get().load(hero_list.get(i).getValueImageURL()).resize(450,450).centerCrop().into(ivBasicImage);
 
 //                        double a = calculate_distance(heroInfo);
 //                        distances.put(heroInfo,a);
