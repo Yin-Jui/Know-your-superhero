@@ -36,6 +36,7 @@ public class ResultActivity extends AppCompatActivity {
     private TextView hero;
     private int count = 0;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
