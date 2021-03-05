@@ -1,6 +1,7 @@
 package com.example.knowyoursuperhero;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -9,6 +10,7 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -82,6 +84,17 @@ public class ResultActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(getBaseContext(), MainActivity.class);
                 startActivity(intent);
+            }
+        });
+
+        final FloatingActionButton mailBtn = findViewById(R.id.email_id);
+        mailBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Log.d("cal_", "sending email!!!!!!!!!!!!!");
+                Intent intent1 = new Intent(Intent.ACTION_SENDTO);
+//                intent1.setData(Uri.parse("mailto: "));
+                startActivity(Intent.createChooser(intent1, "Choose an Application"));
             }
         });
     }
