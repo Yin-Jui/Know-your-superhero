@@ -11,6 +11,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import android.util.Log;
 import android.view.View;
 
 import android.view.Menu;

@@ -5,9 +5,11 @@ import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.FragmentActivity;
 
 import android.Manifest;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Location;
 import android.os.Bundle;
+import android.util.Log;
 
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationServices;
@@ -33,6 +35,11 @@ public class MapsActivity extends FragmentActivity{
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
         mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
+
+        //TODO: make sure t user is logged in +
+        // has location associated with them before calling
+        Log.e("********", "ABOUT TO START SERVICE");
+        startService(new Intent(this, GPService.class));
 
         //get client location
         clientLOC = LocationServices.getFusedLocationProviderClient(this);
