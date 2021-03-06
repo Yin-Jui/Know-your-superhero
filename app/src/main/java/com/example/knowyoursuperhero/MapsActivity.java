@@ -36,9 +36,7 @@ public class MapsActivity extends FragmentActivity{
         mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
 
-        //TODO: make sure t user is logged in +
-        // has location associated with them before calling
-        Log.e("********", "ABOUT TO START SERVICE");
+        //TODO: make sure user has location associated with them before service can run +
         startService(new Intent(this, GPService.class));
 
         //get client location
@@ -62,7 +60,6 @@ public class MapsActivity extends FragmentActivity{
                         @Override
                         public void onMapReady(GoogleMap googleMap) {
                             LatLng latLng = new LatLng(location.getLatitude(), location.getLongitude());
-                            //System.out.println("******* found location***");
                             MarkerOptions options = new MarkerOptions().position(latLng).title("You Are Here");
 
                             //zoom to point on map
