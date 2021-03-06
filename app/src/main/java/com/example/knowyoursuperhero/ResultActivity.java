@@ -93,7 +93,7 @@ public class ResultActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Log.d("cal_", "sending email!!!!!!!!!!!!!");
                 Intent intent1 = new Intent(Intent.ACTION_SENDTO);
-//                intent1.setData(Uri.parse("mailto: "));
+                intent1.putExtra(Intent.EXTRA_TEXT, "Your superhero is \n" + hero.getText().toString() + "\n" + result_scores.toString());
                 startActivity(Intent.createChooser(intent1, "Choose an Application"));
             }
         });
