@@ -22,7 +22,7 @@ import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 
-public class MapsActivity extends FragmentActivity{
+public class MapsActivity extends FragmentActivity implements OnMapReadyCallback{
 
     private GoogleMap mMap;
     private FusedLocationProviderClient clientLOC;
@@ -36,12 +36,14 @@ public class MapsActivity extends FragmentActivity{
         mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
 
-        //TODO: make sure user has location associated with them before service can run +
+        //TODO: make sure user has location associated with them before service can run
         startService(new Intent(this, GPService.class));
 
+        mapFragment.getMapAsync(this);
+
         //get client location
-        clientLOC = LocationServices.getFusedLocationProviderClient(this);
-        getLocation();
+//        clientLOC = LocationServices.getFusedLocationProviderClient(this);
+//        getLocation();
     }
 
     private void getLocation() {
@@ -55,17 +57,28 @@ public class MapsActivity extends FragmentActivity{
         task.addOnSuccessListener(new OnSuccessListener<Location>() {
             @Override
             public void onSuccess(Location location) {
+                //Log.e("*******", "onSuccess");
                 if (location != null)
+                    //Log.e("*****", "location not null");
+
                     mapFragment.getMapAsync(new OnMapReadyCallback() {
                         @Override
                         public void onMapReady(GoogleMap googleMap) {
-                            LatLng latLng = new LatLng(location.getLatitude(), location.getLongitude());
-                            MarkerOptions options = new MarkerOptions().position(latLng).title("You Are Here");
 
-                            //zoom to point on map
-                            googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng, 10));
-                            //add marker
-                            googleMap.addMarker(options);
+                            // Add a marker in Sydney and move the camera
+                            LatLng sydney = new LatLng(-34, 151);
+                            mMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney"));
+                            mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
+
+//                            LatLng latLng = new LatLng(location.getLatitude(), location.getLongitude());
+//                            MarkerOptions options = new MarkerOptions().position(latLng).title("You Are Here");
+//
+//                            Log.e("******", "lat and long: " + latLng.latitude + "," + latLng.longitude);
+//
+//                            //zoom to point on map
+//                            googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng, 10));
+//                            //add marker
+//                            googleMap.addMarker(options);
                         }
                     });
             }
@@ -89,13 +102,14 @@ public class MapsActivity extends FragmentActivity{
      * it inside the SupportMapFragment. This method will only be triggered once the user has
      * installed Google Play services and returned to the app.
      */
-//    @Override
-//    public void onMapReady(GoogleMap googleMap) {
-//        mMap = googleMap;
-//
-//        // Add a marker in Sydney and move the camera
-//        LatLng sydney = new LatLng(-34, 151);
-//        mMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney"));
-//        mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
-//    }
+    @Override
+    public void onMapReady(GoogleMap googleMap) {
+        mMap = googleMap;
+
+        // Add a marker in Sydney and move the camera
+        LatLng sydney = new LatLng(-34, 151);
+        Log.e("******", "onMapReady: " + sydney.longitude + "," +  sydney.latitude );
+        mMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney"));
+        mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
+    }
 }

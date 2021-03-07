@@ -68,7 +68,6 @@ public class HeroFightActivity extends AppCompatActivity {
             }
         });
 
-
         images.add((ImageView) findViewById(R.id.iv_1_1));
         images.add((ImageView) findViewById(R.id.iv_1_2));
         images.add((ImageView) findViewById(R.id.iv_1_3));
@@ -100,8 +99,6 @@ public class HeroFightActivity extends AppCompatActivity {
 
     }
 
-
-
     public void connect(String superHero) {
         if (retrofit == null) {
             retrofit = new Retrofit.Builder()
@@ -117,10 +114,8 @@ public class HeroFightActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call<Hero> call, Response<Hero> response) {
 
-
                 result_list.addAll(response.body().getMyHero());
                 count++;
-
 
                 if(count == 11){
 
