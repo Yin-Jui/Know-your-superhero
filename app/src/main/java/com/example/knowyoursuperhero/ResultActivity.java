@@ -92,7 +92,8 @@ public class ResultActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Log.d("cal_", "sending email!!!!!!!!!!!!!");
-                Intent intent1 = new Intent(Intent.ACTION_SENDTO);
+                Intent intent1 = new Intent(Intent.ACTION_SEND);
+                intent1.setType("text/plain");
                 intent1.putExtra(Intent.EXTRA_TEXT, "Your superhero is \n" + hero.getText().toString() + "\n" + result_scores.toString());
                 startActivity(Intent.createChooser(intent1, "Choose an Application"));
             }
