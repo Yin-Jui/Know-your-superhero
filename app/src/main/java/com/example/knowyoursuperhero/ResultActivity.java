@@ -94,7 +94,8 @@ public class ResultActivity extends AppCompatActivity {
                 Log.d("cal_", "sending email!!!!!!!!!!!!!");
                 Intent intent1 = new Intent(Intent.ACTION_SEND);
                 intent1.setType("text/plain");
-                intent1.putExtra(Intent.EXTRA_TEXT, "Your superhero is \n" + hero.getText().toString() + "\n" + result_scores.toString());
+                intent1.putExtra(Intent.EXTRA_TEXT, "Your superhero is \n" + hero.getText().toString() + "\n" + result_scores[0] + "\n" +
+                        result_scores[1] + "\n" + result_scores[2] + "\n" + result_scores[3] + "\n" + result_scores[4] + "\n" + result_scores[5]);
                 startActivity(Intent.createChooser(intent1, "Choose an Application"));
             }
         });
