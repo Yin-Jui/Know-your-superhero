@@ -21,12 +21,6 @@ public class QuizActivity extends AppCompatActivity {
     private List<Question> q_list;
     private ProgressBar pb ;
     private TextView tv_progress;
-    private int intelligence = 0;
-    private int strength = 0;
-    private int speed = 0;
-    private int durability = 0 ;
-    private int power = 0;
-    private int combat = 0;
     private int[] results;
 
 
