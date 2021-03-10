@@ -36,30 +36,6 @@ public class HeroInfo {
         return name;
     }
 
-    public Object getPowerStats() {
-        return powerStats;
-    }
-
-    public Object getAppearnace() {
-        return appearnace;
-    }
-
-    public Object getBio() {
-        return bio;
-    }
-
-    public Object getWork() {
-        return work;
-    }
-
-    public Object getConnection() {
-        return connection;
-    }
-
-    public Object getImageURL() {
-        return imageURL;
-    }
-
     public String getValueAppearnace(String key) {
         LinkedTreeMap temp = (LinkedTreeMap) appearnace;
         return (String) temp.get(key);
