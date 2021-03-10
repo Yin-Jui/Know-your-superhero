@@ -19,7 +19,7 @@ public class Question {
             String option1,
             String option2,
             String option3,
-           String option4, int question_type){
+            String option4, int question_type){
 
         this.question = question;
         this.option1 = option1;

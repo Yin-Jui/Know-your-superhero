@@ -6,7 +6,7 @@ import java.util.List;
 public class Contents {
 
     public List<Question> q_list;
-    public int Q_number = 1;
+    public int Q_number;
 
     private Question q1 = new Question("What's your fav. food?",
             "pizza","ramen", "sushi","blood", Question.INTELLIGENCE);
