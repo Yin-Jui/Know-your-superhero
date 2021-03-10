@@ -4,6 +4,7 @@ import android.Manifest;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -22,7 +23,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.FirebaseFirestore;
 
-public class MapsActivity extends FragmentActivity{
+public class MapsActivity extends FragmentActivity implements OnMapReadyCallback{
 
     private FusedLocationProviderClient clientLOC;
     private SupportMapFragment mapFragment;
@@ -35,7 +36,7 @@ public class MapsActivity extends FragmentActivity{
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
         mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
-
+        mapFragment.getMapAsync(MapsActivity.this);
         //Set default location first, maps seems to be less glitchy this wa
         Utility.Companion.setLocation(new latlng(25, 60));
 
@@ -102,6 +103,8 @@ public class MapsActivity extends FragmentActivity{
 //                    });
 //            }
 //        });
+
+
     }
 
     @Override
@@ -115,14 +118,14 @@ public class MapsActivity extends FragmentActivity{
         }
     }
 
-//    @Override
-//    public void onMapReady(GoogleMap googleMap) {
-//        mMap = googleMap;
-//
-//        // Add a marker in Sydney and move the camera
-//        LatLng sydney = new LatLng(-34, 151);
-//        Log.e("******", "onMapReady: " + sydney.longitude + "," +  sydney.latitude );
-//        mMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney"));
-//        mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
-//    }
+    @Override
+    public void onMapReady(GoogleMap googleMap) {
+        GoogleMap mMap = googleMap;
+
+        // Add a marker in Sydney and move the camera
+        LatLng sydney = new LatLng(36.0618483, -115.10159);
+        Log.e("******", "onMapReady: " + sydney.longitude + "," +  sydney.latitude );
+        mMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney"));
+        mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
+    }
 }
