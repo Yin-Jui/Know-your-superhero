@@ -38,7 +38,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(MapsActivity.this);
         //Set default location first, maps seems to be less glitchy this wa
-        Utility.Companion.setLocation(new latlng(25, 60));
+//        Utility.Companion.setLocation(new latlng(25, 60));
 
         //get client location
         clientLOC = LocationServices.getFusedLocationProviderClient(this);
