@@ -1,20 +1,16 @@
 package com.example.knowyoursuperhero;
 
+import android.Manifest;
+import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.os.Bundle;
+import android.widget.Toast;
+
 import androidx.annotation.NonNull;
 import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.FragmentActivity;
 
-import android.Manifest;
-import android.content.Intent;
-import android.content.pm.PackageManager;
-import android.location.Location;
-import android.os.Bundle;
-import android.util.Log;
-import android.widget.Toast;
-
 import com.google.android.gms.location.FusedLocationProviderClient;
-import com.google.android.gms.location.LocationCallback;
-import com.google.android.gms.location.LocationRequest;
 import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -22,24 +18,12 @@ import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.QueryDocumentSnapshot;
-import com.google.firebase.firestore.QuerySnapshot;
-
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
-
-import kotlin.jvm.internal.Ref;
 
 public class MapsActivity extends FragmentActivity{
 
-    private GoogleMap mMap;
     private FusedLocationProviderClient clientLOC;
     private SupportMapFragment mapFragment;
 
@@ -71,9 +55,6 @@ public class MapsActivity extends FragmentActivity{
             Manifest.permission.ACCESS_COARSE_LOCATION}, 44);
         }
 
-        //run service only when user gives location permissions
-        startService(new Intent(this, GPService.class));
-
         clientLOC.getLastLocation().addOnSuccessListener(this, location -> {
             if (location != null) {
                 mapFragment.getMapAsync(new OnMapReadyCallback() {
@@ -82,12 +63,15 @@ public class MapsActivity extends FragmentActivity{
                             LatLng latLng = new LatLng(location.getLatitude(), location.getLongitude());
                             MarkerOptions options = new MarkerOptions().position(latLng).title("You Are Here");
 
-                            //Log.e("******", "lat and long: " + latLng.latitude + "," + latLng.longitude);
-
+                            //add location to firebase
+                            Utility.Companion.setLocation(new latlng(location.getLatitude(), location.getLongitude()));
                             //zoom to point on map
                             googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng, 10));
                             //add marker
                             googleMap.addMarker(options);
+
+                            //run service only when location is discovered
+                            startService(new Intent(getBaseContext(), GPService.class));
                         }
                     });
             }

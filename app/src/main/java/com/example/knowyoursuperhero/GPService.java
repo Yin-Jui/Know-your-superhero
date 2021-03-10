@@ -42,7 +42,23 @@ public class GPService extends Service {
     public void onCreate() {
         super.onCreate();
         appContext = getBaseContext();
-        showToast();
+
+        //grab logged in user's info
+        String uid = FirebaseAuth.getInstance().getCurrentUser().getUid();
+        FirebaseFirestore.getInstance().collection("users").document(uid).get().addOnCompleteListener(new OnCompleteListener() {
+            public final void onComplete(@NotNull Task task) {
+                Intrinsics.checkParameterIsNotNull(task, "task");
+                if (task.isSuccessful()) {
+                    DocumentSnapshot snapshot = (DocumentSnapshot) task.getResult();
+                    Users user = snapshot != null ? (Users) snapshot.toObject(Users.class) : null;
+                    if (user != null) {
+                        lat = user.getLocation().getLatitude();
+                        lon = user.getLocation().getLongitude();
+                        showToast();
+                    }
+                }
+            }
+        });
     }
 
     void showToast(){
@@ -56,22 +72,6 @@ public class GPService extends Service {
                     FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
                     if (user != null) {
 
-                        //grab logged in user's info
-                        String uid = FirebaseAuth.getInstance().getCurrentUser().getUid();
-                        FirebaseFirestore.getInstance().collection("users").document(uid).get().addOnCompleteListener(new OnCompleteListener() {
-                            public final void onComplete(@NotNull Task task) {
-                                Intrinsics.checkParameterIsNotNull(task, "task");
-                                if (task.isSuccessful()) {
-                                    DocumentSnapshot snapshot = (DocumentSnapshot) task.getResult();
-                                    Users user = snapshot != null ? (Users) snapshot.toObject(Users.class) : null;
-                                    if (user != null) {
-                                        lat = user.getLocation().getLatitude();
-                                        lon = user.getLocation().getLongitude();
-                                    }
-                                }
-                            }
-                        });
-
                         //check to see if user even has updated location
                         if (lat != 0 & lon != 0) {
 
@@ -82,25 +82,23 @@ public class GPService extends Service {
                                         if (task.isSuccessful()) {
                                             for (QueryDocumentSnapshot document : task.getResult()) {
                                                 Users Appuser = document.toObject(Users.class);
-                                                Log.d(TAG, Appuser.getUsername() + ": " +
-                                                        Appuser.getLocation().getLatitude() + " " + Appuser.getLocation().getLongitude());
+
+                                                //check to see if any in distance
+                                                double distance = distance(lat, lon,
+                                                        Appuser.getLocation().getLatitude(), Appuser.getLocation().getLongitude(), "M");
+
+                                                //if distance isn't user(distance == 0) and within certain range
+                                                if (distance != 0 & distance < 20) {
+                                                    //Log.e("****", String.valueOf(distance));
+                                                    Toast.makeText(appContext, "User nearby!", Toast.LENGTH_SHORT).show();
+                                                    //should probably break after first found user
+                                                }
                                             }
                                         } else {
                                             Log.d(TAG, "Error getting documents: ", task.getException());
                                         }
                                     });
-
-//                            //user1 is logged-in user, user 2 is everyone else from database
-//                            LatLng user1 = new LatLng(32.9697, -96.80322);
-//                            LatLng user2 = new LatLng(29.46786, -98.53506);
-//                            double distance = distance(user1.latitude, user1.longitude,
-//                                    user2.latitude, user2.longitude, "M");
-//
-//                            //if distance isn't user(distance == 0) and within certain range
-//                            if (distance > 0 & distance < 5)
-//                                Toast.makeText(appContext, "User logged in", Toast.LENGTH_SHORT).show();
-                        }else
-                            Log.e("*****", "USER still has 0,0");
+                        }
 
                         //to make the handler call itself recursively every 6 sec
                         handler.postDelayed(this, 6000);
